@@ -70,8 +70,7 @@ body {
 }
 
 .status-bar {
-  height: 36px;
-  background-color: var(--white);
+  display: none;
 }
 
 .appbar-content {
