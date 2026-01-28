@@ -79,6 +79,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--spacing-20);
+  border-bottom: 1px solid #eee;
 }
 
 .appbar-title {
@@ -130,7 +131,8 @@ body {
 }
 
 /* Delete Character Button */
-.delete-character-btn {
+.delete-character-btn,
+.delete-command-btn {
   width: 28px;
   height: 28px;
   background: none;
@@ -143,11 +145,13 @@ body {
   transition: background-color 0.2s;
 }
 
-.delete-character-btn:hover {
+.delete-character-btn:hover,
+.delete-command-btn:hover {
   background-color: var(--gray-100);
 }
 
-.delete-character-btn:hover svg path {
+.delete-character-btn:hover svg path,
+.delete-command-btn:hover svg path {
   stroke: var(--red-500);
 }
 
@@ -437,6 +441,7 @@ body {
 
 .textarea-footer .char-counter {
   margin-top: 0;
+  margin-left: auto;
 }
 
 /* Tag Suggestions */
@@ -988,6 +993,7 @@ body {
   padding: 0;
   border-radius: var(--radius-4);
   transition: background-color 0.2s;
+  border: 1px solid #eee;
 }
 
 .emotion-close-btn:hover {
@@ -1011,8 +1017,7 @@ body {
   height: 36px;
   padding: 0 var(--spacing-16);
   background-color: var(--white);
-  border: 1px;
-  border-color: #eee;
+  border: 1px solid #eee;
   border-radius: 6px;
   font-family: var(--font-family);
   font-size: 13px;
