@@ -132,13 +132,14 @@ export class CharacterSection {
      * Setup delete button event listeners
      */
     setupDeleteButtons() {
-        document.querySelectorAll('.delete-character-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const section = e.target.closest('.character-section');
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.delete-character-btn');
+            if (btn) {
+                const section = btn.closest('.character-section');
                 if (section) {
                     this.deleteSection(section);
                 }
-            });
+            }
         });
     }
 

@@ -108,13 +108,14 @@ export class CommandSection {
      * Setup delete button event listeners
      */
     setupDeleteButtons() {
-        document.querySelectorAll('.delete-command-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const section = e.target.closest('.command-section');
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.delete-command-btn');
+            if (btn) {
+                const section = btn.closest('.command-section');
                 if (section) {
                     this.deleteSection(section);
                 }
-            });
+            }
         });
     }
 
