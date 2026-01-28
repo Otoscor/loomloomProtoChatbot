@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>챗봇 생성 - loomloom</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="mobile-container">
+    <!-- App Bar -->
+    <header class="appbar">
+      <div class="status-bar"></div>
+      <div class="appbar-content">
+        <button class="icon-btn back-btn">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M17.5 21L10.5 14L17.5 7" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <h1 class="appbar-title">챗봇 생성</h1>
+        <button class="icon-btn menu-btn">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="7" r="2" fill="#1D1D1D" />
+            <circle cx="14" cy="14" r="2" fill="#1D1D1D" />
+            <circle cx="14" cy="21" r="2" fill="#1D1D1D" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Section: 채팅 형식 -->
+      <section class="form-section">
+        <div class="section-card">
+          <div class="section-inner">
+            <div class="field-header">
+              <span class="field-label">채팅 형식</span>
+            </div>
+
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="createType" value="story">
+                <span class="radio-mark"></span>
+                <div class="radio-content">
+                  <span class="radio-title">스토리</span>
+                  <span class="radio-desc">함께 소설 속 주인공이 되어 서사를 만들어 나갑니다.</span>
+                </div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="createType" value="chat" checked>
+                <span class="radio-mark"></span>
+                <div class="radio-content">
+                  <span class="radio-title">1:1 대화</span>
+                  <span class="radio-desc">캐릭터와 직접 이야기를 나누며 교감합니다.</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: 프로필 설정 -->
+      <section class="form-section">
+        <div class="section-header">
+          <h2 class="section-title">프로필 설정</h2>
+          <p class="section-desc">유저들이 보게 될 정보들을 설정하는 구간입니다.</p>
+        </div>
+
+        <div class="section-card">
+          <!-- 썸네일 -->
+          <div class="field-group">
+            <div class="field-header">
+              <span class="field-label">썸네일</span>
+              <span class="field-required">필수</span>
+            </div>
+            <p class="field-desc">다른 사용자들에게 보여질 썸네일을 정해주세요.</p>
+            <div class="image-upload" id="profileUpload">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M15.75 11.25V14.25C15.75 14.6478 15.592 15.0294 15.3107 15.3107C15.0294 15.592 14.6478 15.75 14.25 15.75H3.75C3.35218 15.75 2.97064 15.592 2.68934 15.3107C2.40804 15.0294 2.25 14.6478 2.25 14.25V11.25"
+                  stroke="#909090" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12.75 6L9 2.25L5.25 6" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M9 2.25V11.25" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>이미지 업로드</span>
+            </div>
+          </div>
+
+          <!-- 제목 -->
+          <div class="field-group">
+            <div class="field-header">
+              <span class="field-label">제목</span>
+              <span class="field-required">필수</span>
+            </div>
+            <p class="field-desc">피드에 보일 제목입니다.</p>
+            <div class="input-wrapper">
+              <input type="text" class="text-input" placeholder="예) 까칠한 학생회장 이수현" maxlength="20">
+              <span class="char-counter">0/20</span>
+            </div>
+          </div>
+
+          <!-- 한 줄 소개 -->
+          <div class="field-group">
+            <div class="field-header">
+              <span class="field-label">한 줄 소개</span>
+              <span class="field-required">필수</span>
+            </div>
+            <p class="field-desc">캐릭터의 성격이나 상황을 매력적으로 요약해주세요.</p>
+            <div class="input-wrapper">
+              <textarea class="textarea-input" placeholder="예) 질투 많은 소꿉친구" maxlength="20" rows="5"></textarea>
+              <div class="textarea-footer">
+                <div class="tag-suggestions">
+                  <button class="tag-btn">{char}</button>
+                  <button class="tag-btn">{guest}</button>
+                </div>
+                <span class="char-counter">0/20</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: 캐릭터 정보 -->
+      <div id="characterSectionsContainer">
+        <section class="form-section character-section" data-character-index="1">
+          <div class="section-header">
+            <div class="section-header-row">
+              <h2 class="section-title">캐릭터 정보</h2>
+              <button class="delete-character-btn" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M15 5L5 15M5 5L15 15" stroke="#909090" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+            <p class="section-desc">캐릭터의 개성과 외형을 설정해주세요.</p>
+          </div>
+
+          <div class="section-card">
+            <!-- 캐릭터 이름 -->
+            <div class="field-group">
+              <div class="field-header-with-btn">
+                <div>
+                  <div class="field-header">
+                    <span class="field-label">캐릭터 이름</span>
+                    <span class="field-required">필수</span>
+                  </div>
+                  <p class="field-desc">이름이나 별명을 입력하세요.</p>
+                </div>
+                <button class="generate-btn">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path
+                      d="M7 1.16666L8.16667 5.25L12.25 6.41666L8.16667 7.58333L7 11.6667L5.83333 7.58333L1.75 6.41666L5.83333 5.25L7 1.16666Z"
+                      fill="#5A35EC" />
+                    <path
+                      d="M10.7917 1.45834L11.2292 2.77084L12.5417 3.20834L11.2292 3.64584L10.7917 4.95834L10.3542 3.64584L9.04167 3.20834L10.3542 2.77084L10.7917 1.45834Z"
+                      fill="#5A35EC" />
+                  </svg>
+                </button>
+              </div>
+              <div class="input-wrapper">
+                <input type="text" class="text-input" placeholder="예) 이수현, 검은 마법사" maxlength="20">
+                <span class="char-counter">0/20</span>
+              </div>
+            </div>
+
+            <!-- 캐릭터 특징 및 성격 -->
+            <div class="field-group">
+              <div class="field-header-with-btn">
+                <div>
+                  <div class="field-header">
+                    <span class="field-label">캐릭터 특징 및 성격</span>
+                    <span class="field-required">필수</span>
+                  </div>
+                  <p class="field-desc">성격, 외형, 비밀 등을 상세히 적어주세요.</p>
+                </div>
+                <button class="generate-btn">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path
+                      d="M7 1.16666L8.16667 5.25L12.25 6.41666L8.16667 7.58333L7 11.6667L5.83333 7.58333L1.75 6.41666L5.83333 5.25L7 1.16666Z"
+                      fill="#5A35EC" />
+                    <path
+                      d="M10.7917 1.45834L11.2292 2.77084L12.5417 3.20834L11.2292 3.64584L10.7917 4.95834L10.3542 3.64584L9.04167 3.20834L10.3542 2.77084L10.7917 1.45834Z"
+                      fill="#5A35EC" />
+                  </svg>
+                </button>
+              </div>
+              <div class="input-wrapper">
+                <textarea class="textarea-input" placeholder="예) 차가운 말투를 쓰지만 동물을 좋아하는 반전 매력. 주인공에게만 유독 엄격함."
+                  maxlength="1000" rows="5"></textarea>
+                <div class="textarea-footer">
+                  <span class="char-counter">0/1,000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 캐릭터 상황별 이미지 -->
+            <div class="field-group">
+              <div class="field-header">
+                <span class="field-label">캐릭터 상황별 이미지</span>
+                <span class="field-optional">선택</span>
+              </div>
+              <p class="field-desc">대화 상황에 따라 변하는 캐릭터의 모습을 추가하세요.</p>
+
+              <div class="situation-images">
+                <div class="situation-item">
+                  <div class="situation-upload">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path
+                        d="M15.75 11.25V14.25C15.75 14.6478 15.592 15.0294 15.3107 15.3107C15.0294 15.592 14.6478 15.75 14.25 15.75H3.75C3.35218 15.75 2.97064 15.592 2.68934 15.3107C2.40804 15.0294 2.25 14.6478 2.25 14.25V11.25"
+                        stroke="#909090" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M12.75 6L9 2.25L5.25 6" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M9 2.25V11.25" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                    <span>이미지 업로드</span>
+                  </div>
+                  <button class="emotion-select-btn" data-index="1">
+                    <span>감정표현</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M4 6L8 10L12 6" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="situation-item">
+                  <div class="situation-upload">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path
+                        d="M15.75 11.25V14.25C15.75 14.6478 15.592 15.0294 15.3107 15.3107C15.0294 15.592 14.6478 15.75 14.25 15.75H3.75C3.35218 15.75 2.97064 15.592 2.68934 15.3107C2.40804 15.0294 2.25 14.6478 2.25 14.25V11.25"
+                        stroke="#909090" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M12.75 6L9 2.25L5.25 6" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M9 2.25V11.25" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                    <span>이미지 업로드</span>
+                  </div>
+                  <button class="emotion-select-btn" data-index="2">
+                    <span>감정표현</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M4 6L8 10L12 6" stroke="#909090" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 캐릭터 추가 버튼 -->
+      <button class="add-btn" id="addCharacterBtn">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 4V16M4 10H16" stroke="#5A35EC" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <span>캐릭터 추가</span>
+      </button>
+
+      <!-- Section: 세계관 설정 -->
+      <section class="form-section">
+        <div class="section-header">
+          <h2 class="section-title">세계관 설정</h2>
+          <p class="section-desc">대화의 배경이 되는 '무대'를 만드는 과정입니다.</p>
+        </div>
+
+        <div class="section-card">
+          <!-- 첫 만남 상황 -->
+          <div class="field-group">
+            <div class="field-header-with-btn">
+              <div>
+                <div class="field-header">
+                  <span class="field-label">첫 만남 상황</span>
+                  <span class="field-optional">선택</span>
+                </div>
+                <p class="field-desc">대화가 시작되는 구체적인 장면을 묘사해주세요.</p>
+              </div>
+              <button class="generate-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M8 1V3M8 13V15M1 8H3M13 8H15M2.93 2.93L4.34 4.34M11.66 11.66L13.07 13.07M2.93 13.07L4.34 11.66M11.66 4.34L13.07 2.93"
+                    stroke="#5A35EC" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+            <div class="input-wrapper">
+              <textarea class="textarea-input" placeholder="예) 쏟아지는 빗속에서 {char}이 우산도 없이 당신을 기다리고 있습니다." maxlength="1000"
+                rows="5"></textarea>
+              <div class="textarea-footer">
+                <div class="tag-suggestions">
+                  <button class="tag-btn">{char}</button>
+                  <button class="tag-btn">{guest}</button>
+                </div>
+                <span class="char-counter">0/1,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 배경 설정 -->
+          <div class="field-group">
+            <div class="field-header-with-btn">
+              <div>
+                <div class="field-header">
+                  <span class="field-label">배경 설정</span>
+                  <span class="field-required">필수</span>
+                </div>
+                <p class="field-desc">장소, 시대적 배경, 특별한 규칙을 설정해주세요.</p>
+              </div>
+              <button class="generate-btn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M7 1.16666L8.16667 5.25L12.25 6.41666L8.16667 7.58333L7 11.6667L5.83333 7.58333L1.75 6.41666L5.83333 5.25L7 1.16666Z"
+                    fill="#5A35EC" />
+                  <path
+                    d="M10.7917 1.45834L11.2292 2.77084L12.5417 3.20834L11.2292 3.64584L10.7917 4.95834L10.3542 3.64584L9.04167 3.20834L10.3542 2.77084L10.7917 1.45834Z"
+                    fill="#5A35EC" />
+                </svg>
+              </button>
+            </div>
+            <div class="input-wrapper">
+              <textarea class="textarea-input" placeholder="예) 마법과 과학이 공존하는 2077년 네오 서울. {guest}는 이곳의 유일한 이방인입니다."
+                maxlength="500" rows="5"></textarea>
+              <div class="textarea-footer">
+                <div class="tag-suggestions">
+                  <button class="tag-btn">{char}</button>
+                  <button class="tag-btn">{guest}</button>
+                </div>
+                <span class="char-counter">0/500</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 시작 이미지 -->
+          <div class="field-group">
+            <div class="field-header">
+              <span class="field-label">시작 이미지</span>
+              <span class="field-optional">선택</span>
+            </div>
+            <p class="field-desc">첫 시작을 장식할 배경이나 캐릭터의 모습을 올려주세요.</p>
+            <div class="image-upload large" id="startImageUpload">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 4V16M4 10H16" stroke="#909090" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 캐릭터 첫 메시지 -->
+          <div class="field-group">
+            <div class="field-header-with-btn">
+              <div>
+                <div class="field-header">
+                  <span class="field-label">캐릭터 첫 메시지</span>
+                  <span class="field-required">필수</span>
+                </div>
+                <p class="field-desc">유저를 반겨줄 캐릭터의 첫 마디입니다.</p>
+              </div>
+              <button class="generate-btn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M7 1.16666L8.16667 5.25L12.25 6.41666L8.16667 7.58333L7 11.6667L5.83333 7.58333L1.75 6.41666L5.83333 5.25L7 1.16666Z"
+                    fill="#5A35EC" />
+                  <path
+                    d="M10.7917 1.45834L11.2292 2.77084L12.5417 3.20834L11.2292 3.64584L10.7917 4.95834L10.3542 3.64584L9.04167 3.20834L10.3542 2.77084L10.7917 1.45834Z"
+                    fill="#5A35EC" />
+                </svg>
+              </button>
+            </div>
+            <div class="input-wrapper">
+              <textarea class="textarea-input" placeholder="예) 드디어 왔네? 얼마나 기다렸는지 알아?" maxlength="500"
+                rows="4"></textarea>
+              <div class="textarea-footer">
+                <div class="tag-suggestions">
+                  <button class="tag-btn">{guest}</button>
+                  <button class="tag-btn">{char}</button>
+                </div>
+                <span class="char-counter">0/500</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 상황 디테일 -->
+          <div class="field-group">
+            <div class="field-header">
+              <span class="field-label">상황 디테일</span>
+              <span class="field-required">필수</span>
+            </div>
+            <p class="field-desc">대화가 시작되는 시점의 구체적인 환경을 설정하세요.</p>
+
+            <div class="inline-fields">
+              <div class="inline-field">
+                <label>날짜</label>
+                <input type="text" class="text-input small" placeholder="2026.01.13.화요일">
+              </div>
+              <div class="inline-field">
+                <label>시간</label>
+                <input type="text" class="text-input small" placeholder="17:20">
+              </div>
+            </div>
+            <div class="inline-field full">
+              <label>상태</label>
+              <input type="text" class="text-input" placeholder="간질이는 갸루와 짜증 섞인 호기심">
+            </div>
+            <div class="inline-field full">
+              <label>위치</label>
+              <input type="text" class="text-input" placeholder="네버랜드, 요정의 숲 외곽">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: 정보 설정 -->
+      <section class="form-section">
+        <div class="section-header">
+          <h2 class="section-title">정보 설정</h2>
+          <p class="section-desc">공개범위 등 설정 정보를 관리합니다.</p>
+        </div>
+
+        <div class="section-card">
+          <label class="section-label">
+            공개 범위 <span class="badge-required">필수</span>
+          </label>
+          <p class="section-description">제작한 캐릭터를 다른 사람들에게도 공유할까요?</p>
+
+          <div class="toggle-container">
+            <label class="toggle-card">
+              <input type="radio" name="visibility" value="public" checked>
+              <div class="toggle-content">
+                <span class="toggle-check">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <span class="toggle-label">공개</span>
+              </div>
+            </label>
+            <label class="toggle-card">
+              <input type="radio" name="visibility" value="private">
+              <div class="toggle-content">
+                <span class="toggle-check">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <span class="toggle-label">비공개</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="spacer-24"></div>
+
+          <label class="section-label">
+            대표 장르 <span class="badge-required">필수</span>
+          </label>
+          <p class="section-description">캐릭터와 가장 잘 어울리는 장르를 선택해주세요.</p>
+
+          <div class="radio-group genre-grid">
+            <label class="radio-card">
+              <input type="radio" name="genre" value="romance" checked>
+              <span class="radio-label">로맨스</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="fantasy">
+              <span class="radio-label">판타지</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="drama">
+              <span class="radio-label">드라마</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="martial">
+              <span class="radio-label">무협</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="horror">
+              <span class="radio-label">공포</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="action">
+              <span class="radio-label">액션</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="comic">
+              <span class="radio-label">코믹</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="sports">
+              <span class="radio-label">스포츠</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="genre" value="etc">
+              <span class="radio-label">기타</span>
+            </label>
+          </div>
+
+          <div class="spacer-24"></div>
+
+          <label class="section-label">
+            해시태그 <span class="badge-optional">선택</span>
+          </label>
+          <p class="section-description">성격, 외형, 분위기 등 키워드를 추가해 보세요. (최대 10개)</p>
+
+          <div class="hashtag-container">
+            <div class="hashtag-input-wrapper">
+              <input type="text" id="hashtagInput" placeholder="단어 입력 후 엔터" maxlength="10">
+              <span class="hashtag-counter-inside">0/10</span>
+            </div>
+            <button type="button" class="hashtag-add-btn">추가</button>
+          </div>
+
+          <div id="hashtagList" class="hashtag-list">
+            <!-- 태그가 여기에 추가됩니다 -->
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- Section: 명령어 -->
+      <div id="commandSectionsContainer">
+        <section class="form-section command-section" data-command-index="1">
+          <div class="section-header">
+            <div class="section-header-row">
+              <h2 class="section-title">명령어</h2>
+              <button class="delete-command-btn" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M15 5L5 15M5 5L15 15" stroke="#909090" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+            <p class="section-desc">특정 명령어를 입력했을 때 특수 동작을 설정하는 구간입니다.</p>
+          </div>
+
+          <div class="section-card">
+            <div class="field-group">
+              <div class="field-header">
+                <span class="field-label">명령어 키워드</span>
+                <span class="field-optional">선택</span>
+              </div>
+              <p class="field-desc">특정 기능을 수행하는 명령어을 등록해 보세요.</p>
+              <div class="input-wrapper">
+                <input type="text" class="text-input" placeholder="예) !요약" maxlength="50">
+                <span class="char-counter">0/50</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-header">
+                <span class="field-label">특정 동작</span>
+                <span class="field-optional">선택</span>
+              </div>
+              <p class="field-desc">입력 시 챗봇이 어떤 행동이나 대답을 할지 설정하세요.</p>
+              <div class="input-wrapper">
+                <textarea class="textarea-input" placeholder="예) 지금까지의 대화 내용을 3줄로 요약하고 다음 행동을 제안합니다." maxlength="500"
+                  rows="5"></textarea>
+                <div class="textarea-footer">
+                  <span class="char-counter">0/500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 명령어 추가 버튼 -->
+      <button class="add-btn" id="addCommandBtn">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 4V16M4 10H16" stroke="#5A35EC" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <span>명령어 추가 (1/4)</span>
+      </button>
+    </main>
+
+    <!-- CTA Buttons -->
+    <footer class="cta-footer">
+      <button class="cta-btn secondary">임시저장</button>
+      <button class="cta-btn primary">챗봇 생성</button>
+    </footer>
+  </div>
+
+  <!-- 감정 선택 바텀시트 -->
+  <div class="emotion-overlay" id="emotionOverlay"></div>
+  <div class="emotion-bottom-sheet" id="emotionBottomSheet">
+    <div class="emotion-sheet-header">
+      <div class="emotion-grabber"></div>
+      <div class="emotion-title-row">
+        <h3 class="emotion-title">감정 선택</h3>
+        <button class="emotion-close-btn" id="emotionCloseBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="emotion-content">
+      <div class="emotion-chips">
+        <button class="emotion-chip" data-emotion="무표정">무표정</button>
+        <button class="emotion-chip" data-emotion="미소">미소</button>
+        <button class="emotion-chip" data-emotion="걱정">걱정</button>
+        <button class="emotion-chip" data-emotion="얼굴 붉힘">얼굴 붉힘</button>
+        <button class="emotion-chip" data-emotion="충격">충격</button>
+        <button class="emotion-chip" data-emotion="무서움">무서움</button>
+        <button class="emotion-chip" data-emotion="흥분">흥분</button>
+        <button class="emotion-chip" data-emotion="찡그림">찡그림</button>
+        <button class="emotion-chip" data-emotion="씨익 웃음">씨익 웃음</button>
+        <button class="emotion-chip" data-emotion="뻐침">뻐침</button>
+        <button class="emotion-chip" data-emotion="생각중">생각중</button>
+        <button class="emotion-chip" data-emotion="노려봄">노려봄</button>
+        <button class="emotion-chip" data-emotion="놀람">놀람</button>
+        <button class="emotion-chip" data-emotion="당황">당황</button>
+        <button class="emotion-chip" data-emotion="활짝 웃음">활짝 웃음</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

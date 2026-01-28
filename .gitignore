@@ -1,0 +1,4 @@
+# .gitignore
+mcp_config.json
+.claude/
+.DS_Store
