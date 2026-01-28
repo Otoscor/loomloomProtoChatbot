@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>챗봇 생성 - loomloom</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -134,7 +134,7 @@
         <section class="form-section character-section" data-character-index="1">
           <div class="section-header">
             <div class="section-header-row">
-              <h2 class="section-title">캐릭터 정보</h2>
+              <h2 class="section-title">캐릭터 설정 (기본)</h2>
               <button class="delete-character-btn" style="display: none;">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M15 5L5 15M5 5L15 15" stroke="#909090" stroke-width="2" stroke-linecap="round" />
@@ -597,14 +597,15 @@
       <div class="emotion-title-row">
         <h3 class="emotion-title">감정 선택</h3>
         <button class="emotion-close-btn" id="emotionCloseBtn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M18 6L6 18M6 6L18 18" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="#333333" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
       </div>
     </div>
     <div class="emotion-content">
       <div class="emotion-chips">
+        <button class="emotion-chip" data-emotion="없음">없음</button>
         <button class="emotion-chip" data-emotion="무표정">무표정</button>
         <button class="emotion-chip" data-emotion="미소">미소</button>
         <button class="emotion-chip" data-emotion="걱정">걱정</button>
@@ -624,7 +625,7 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

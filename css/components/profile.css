@@ -1,0 +1,193 @@
+/**
+ * Profile Page Styles
+ */
+
+.profile-body {
+    background-color: var(--white);
+    padding-bottom: 80px;
+}
+
+.profile-container {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.profile-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--spacing-16);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.profile-back-btn,
+.profile-more-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.profile-back-btn:active,
+.profile-more-btn:active {
+    transform: scale(0.95);
+}
+
+.profile-hero {
+    width: 100%;
+    height: 360px;
+    position: relative;
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #E0C3FC 0%, #8EC5FC 100%);
+}
+
+.profile-content {
+    position: relative;
+    margin-top: -24px;
+    background-color: var(--white);
+    border-radius: 24px 24px 0 0;
+    padding: var(--spacing-24);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.profile-info-header {
+    margin-bottom: var(--spacing-24);
+}
+
+.profile-tags {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.genre-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--purple-600);
+    background-color: var(--purple-50);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.profile-intro {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.4;
+}
+
+.profile-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 16px 0;
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: var(--spacing-24);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--gray-400);
+}
+
+.stat-divider {
+    width: 1px;
+    height: 24px;
+    background-color: var(--gray-200);
+}
+
+.profile-section {
+    margin-bottom: var(--spacing-24);
+}
+
+.profile-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 8px;
+}
+
+.profile-description {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.keyword-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.keyword-chip {
+    font-size: 13px;
+    color: var(--gray-600);
+    background-color: var(--gray-100);
+    padding: 6px 12px;
+    border-radius: 16px;
+}
+
+.profile-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 24px 32px;
+    background-color: var(--white);
+    border-top: 1px solid var(--gray-100);
+    z-index: 100;
+}
+
+.chat-start-btn {
+    width: 100%;
+    height: 52px;
+    background-color: var(--purple-900);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chat-start-btn:hover {
+    background-color: #4326B8;
+}
