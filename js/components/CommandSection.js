@@ -3,7 +3,7 @@
  * Handles adding, deleting, and renumbering command sections
  */
 
-import { showToast } from '../utils/toast.js';
+
 
 export class CommandSection {
     constructor() {
@@ -34,7 +34,7 @@ export class CommandSection {
      */
     addSection(container) {
         if (this.commandCount >= this.maxCommands) {
-            showToast(`명령어는 최대 ${this.maxCommands}개까지 추가할 수 있습니다.`, 'error');
+
             return;
         }
 
@@ -75,7 +75,7 @@ export class CommandSection {
         this.updateDeleteButtons();
         this.updateAddButtonState();
 
-        showToast(`명령어가 추가되었습니다.`, 'success');
+
 
         return newSection;
     }
@@ -88,7 +88,7 @@ export class CommandSection {
         const sections = container.querySelectorAll('.command-section');
 
         if (sections.length <= 1) {
-            showToast('최소 1개의 명령어가 필요합니다.', 'error');
+
             return;
         }
 
@@ -100,7 +100,7 @@ export class CommandSection {
             this.updateDeleteButtons();
             this.renumberSections();
             this.updateAddButtonState();
-            showToast('명령어가 삭제되었습니다.', 'info');
+
         }, 300);
     }
 

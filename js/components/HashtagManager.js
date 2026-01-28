@@ -2,7 +2,7 @@
  * Hashtag Manager Component
  */
 
-import { showToast } from '../utils/toast.js';
+
 
 export class HashtagManager {
     constructor() {
@@ -41,7 +41,7 @@ export class HashtagManager {
                     const index = parseInt(e.target.dataset.index);
                     this.hashtags.splice(index, 1);
                     updateDisplay();
-                    showToast('해시태그가 삭제되었습니다.', 'info');
+
                 });
             });
         };
@@ -52,24 +52,24 @@ export class HashtagManager {
             if (!value) return;
 
             if (this.hashtags.length >= this.maxHashtags) {
-                showToast(`해시태그는 최대 ${this.maxHashtags}개까지 추가할 수 있습니다.`, 'error');
+
                 return;
             }
 
             if (value.length > this.maxLength) {
-                showToast(`해시태그는 ${this.maxLength}자 이내로 입력해 주세요.`, 'error');
+
                 return;
             }
 
             if (this.hashtags.includes(value)) {
-                showToast('이미 추가된 해시태그입니다.', 'error');
+
                 return;
             }
 
             this.hashtags.push(value);
             input.value = '';
             updateDisplay();
-            showToast(`#${value} 해시태그가 추가되었습니다.`, 'success');
+
         };
 
         addBtn.addEventListener('click', addHashtag);

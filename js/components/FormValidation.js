@@ -3,7 +3,7 @@
  * Handles character counters, textarea resize, and form validation
  */
 
-import { showToast } from '../utils/toast.js';
+
 
 export class FormValidation {
     /**
@@ -136,7 +136,7 @@ export class FormValidation {
                     // Trigger input event
                     textarea.dispatchEvent(new Event('input', { bubbles: true }));
 
-                    showToast(`'${tagText}' 태그가 삽입되었습니다.`, 'info');
+
                 }
             }
         });
@@ -170,18 +170,18 @@ export class FormValidation {
             const characterName = document.querySelector('.character-section input.text-input');
             if (characterName && !characterName.value.trim()) {
                 isValid = false;
-                showToast('캐릭터 이름을 입력해 주세요.', 'error');
+
                 characterName.focus();
                 return;
             }
 
             if (isValid) {
-                showToast('저장되었습니다.', 'success');
+
             }
         });
 
         previewBtn?.addEventListener('click', () => {
-            showToast('미리보기 기능은 준비 중입니다.', 'info');
+
         });
     }
 }

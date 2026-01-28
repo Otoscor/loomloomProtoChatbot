@@ -2,7 +2,7 @@
  * Image Uploader Component
  */
 
-import { showToast } from '../utils/toast.js';
+
 
 export class ImageUploader {
     constructor() {
@@ -37,7 +37,7 @@ export class ImageUploader {
                 if (!file) return;
 
                 if (file.size > this.maxFileSize) {
-                    showToast('파일 크기는 5MB 이하여야 합니다.', 'error');
+
                     return;
                 }
 
@@ -72,7 +72,7 @@ export class ImageUploader {
                         area.classList.add('has-image');
                     }
 
-                    showToast('이미지가 등록되었습니다.', 'success');
+
                 };
                 reader.readAsDataURL(file);
             });
@@ -100,7 +100,7 @@ export class ImageUploader {
           <span>이미지 등록</span>
         `;
                 area.classList.remove('has-image');
-                showToast('이미지가 삭제되었습니다.', 'info');
+
             });
         }
 
@@ -117,7 +117,7 @@ export class ImageUploader {
                     if (!file) return;
 
                     if (file.size > this.maxFileSize) {
-                        showToast('파일 크기는 5MB 이하여야 합니다.', 'error');
+
                         return;
                     }
 
@@ -127,7 +127,7 @@ export class ImageUploader {
                         if (preview) {
                             preview.src = e.target.result;
                         }
-                        showToast('이미지가 변경되었습니다.', 'success');
+
                     };
                     reader.readAsDataURL(file);
                 });

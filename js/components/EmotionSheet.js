@@ -3,7 +3,7 @@
  * Handles emotion selection bottom sheet
  */
 
-import { showToast } from '../utils/toast.js';
+
 
 export class EmotionSheet {
     constructor() {
@@ -93,7 +93,7 @@ export class EmotionSheet {
             this.currentEmotionBtn.classList.remove('selected');
 
             this.close();
-            showToast('감정표현이 초기화되었습니다.', 'info');
+
         } else {
             if (textSpan) {
                 textSpan.textContent = emotion;
@@ -102,7 +102,7 @@ export class EmotionSheet {
             this.currentEmotionBtn.classList.add('selected');
 
             this.close();
-            showToast(`'${emotion}' 감정이 선택되었습니다.`, 'success');
+
         }
     }
 }

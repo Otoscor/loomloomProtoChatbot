@@ -3,7 +3,7 @@
  * Handles adding, deleting, and renumbering character sections
  */
 
-import { showToast } from '../utils/toast.js';
+
 
 export class CharacterSection {
     constructor() {
@@ -34,7 +34,7 @@ export class CharacterSection {
      */
     addSection(container) {
         if (this.characterCount >= this.maxCharacters) {
-            showToast(`캐릭터는 최대 ${this.maxCharacters}개까지 추가할 수 있습니다.`, 'error');
+
             return;
         }
 
@@ -98,7 +98,7 @@ export class CharacterSection {
         this.updateDeleteButtons();
         this.updateAddButtonState();
 
-        showToast(`캐릭터 ${this.characterCount}이(가) 추가되었습니다.`, 'success');
+
 
         return newSection;
     }
@@ -111,7 +111,7 @@ export class CharacterSection {
         const sections = container.querySelectorAll('.character-section');
 
         if (sections.length <= 1) {
-            showToast('최소 1개의 캐릭터가 필요합니다.', 'error');
+
             return;
         }
 
@@ -124,7 +124,7 @@ export class CharacterSection {
             this.updateDeleteButtons();
             this.renumberSections();
             this.updateAddButtonState();
-            showToast('캐릭터가 삭제되었습니다.', 'info');
+
         }, 300);
     }
 
