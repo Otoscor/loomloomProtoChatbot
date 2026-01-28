@@ -64,24 +64,25 @@ export class FormValidation {
      * Setup auto generate buttons (AI sample text)
      */
     setupAutoGenerate() {
-        document.querySelectorAll('.generate-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const fieldGroup = btn.closest('.field-group') || btn.closest('.field-header-with-btn')?.parentElement;
-                const input = fieldGroup?.querySelector('.text-input, .textarea-input');
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.generate-btn');
+            if (!btn) return;
 
-                if (input) {
-                    const sampleTexts = [
-                        '당신의 과거에 대해 알려주세요.',
-                        '오늘 기분이 어때요?',
-                        '무엇을 도와드릴까요?',
-                        '안녕하세요, 저는 AI 어시스턴트입니다.',
-                        '어떤 이야기를 나눠볼까요?'
-                    ];
-                    const randomText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
+            const fieldGroup = btn.closest('.field-group') || btn.closest('.field-header-with-btn')?.parentElement;
+            const input = fieldGroup?.querySelector('.text-input, .textarea-input');
 
-                    this.animateText(input, randomText, btn);
-                }
-            });
+            if (input) {
+                const sampleTexts = [
+                    '당신의 과거에 대해 알려주세요.',
+                    '오늘 기분이 어때요?',
+                    '무엇을 도와드릴까요?',
+                    '안녕하세요, 저는 AI 어시스턴트입니다.',
+                    '어떤 이야기를 나눠볼까요?'
+                ];
+                const randomText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
+
+                this.animateText(input, randomText, btn);
+            }
         });
     }
 
