@@ -176,8 +176,9 @@
 }
 
 /* Genre Grid */
-.genre-grid {
+.radio-group.genre-grid {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 12px;
