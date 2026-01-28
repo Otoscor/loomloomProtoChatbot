@@ -132,6 +132,10 @@
     margin-bottom: var(--spacing-4);
 }
 
+.field-header-with-btn .field-desc {
+    margin-bottom: 0;
+}
+
 .field-label {
     font-size: 13px;
     font-weight: 500;
