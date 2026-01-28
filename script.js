@@ -291,11 +291,35 @@ class ChatbotForm {
   /**
    * 이미지 업로드 설정
    */
+  /**
+   * 이미지 업로드 설정
+   */
   setupImageUploads() {
     const uploadAreas = document.querySelectorAll('.image-upload, .situation-upload');
 
     uploadAreas.forEach(area => {
-      area.addEventListener('click', () => {
+      // 초기 상태 저장
+      area.dataset.initialContent = area.innerHTML;
+
+      area.addEventListener('click', (e) => {
+        // 삭제 버튼 클릭 시
+        if (e.target.closest('.image-delete-btn')) {
+          e.stopPropagation();
+          area.innerHTML = area.dataset.initialContent;
+          area.classList.remove('has-image');
+          area.style.backgroundImage = '';
+          return;
+        }
+
+        // 이미지가 있을 때: 변경 버튼을 클릭한 경우에만 업로드 트리거
+        // 이미지가 없을 때: 영역 어디든 클릭하면 업로드 트리거
+        const isChangeBtn = e.target.closest('.image-change-btn');
+        const hasImage = area.classList.contains('has-image');
+
+        if (hasImage && !isChangeBtn) {
+          return; // 이미지 자체 클릭 시 무시
+        }
+
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = 'image/*';
@@ -313,11 +337,27 @@ class ChatbotForm {
           // 미리보기 표시
           const reader = new FileReader();
           reader.onload = (e) => {
-            area.style.backgroundImage = `url(${e.target.result})`;
-            area.style.backgroundSize = 'cover';
-            area.style.backgroundPosition = 'center';
-            area.innerHTML = '';
+            // 기존 배경 스타일 제거 (img 태그 사용)
+            area.style.backgroundImage = '';
+
             area.classList.add('has-image');
+            area.innerHTML = `
+              <img src="${e.target.result}" class="image-preview" alt="Preview">
+              
+              <button type="button" class="image-delete-btn" aria-label="이미지 삭제">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M9 3L3 9M3 3L9 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              
+              <button type="button" class="image-change-btn">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                   <path d="M10 3.5H8.5L7.75 2.25H4.25L3.5 3.5H2C1.72386 3.5 1.5 3.72386 1.5 4V9.5C1.5 9.77614 1.72386 10 2 10H10C10.2761 10 10.5 9.77614 10.5 9.5V4C10.5 3.72386 10.2761 3.5 10 3.5Z" stroke="white" stroke-width="1.2" stroke-linejoin="round"/>
+                   <path d="M6 8.5C7.10457 8.5 8 7.60457 8 6.5C8 5.39543 7.10457 4.5 6 4.5C4.89543 4.5 4 5.39543 4 6.5C4 7.60457 4.89543 8.5 6 8.5Z" stroke="white" stroke-width="1.2"/>
+                </svg>
+                <span>변경</span>
+              </button>
+            `;
           };
           reader.readAsDataURL(file);
         });

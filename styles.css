@@ -47,16 +47,14 @@
 
 body {
   font-family: var(--font-family);
-  background-color: #F5F5F5;
+  background-color: var(--white);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
 }
 
 /* Mobile Container */
 .mobile-container {
-  width: 360px;
-  min-height: 800px;
+  width: 100%;
+  min-height: 100vh;
   background-color: var(--white);
   position: relative;
   display: flex;
@@ -811,9 +809,8 @@ body {
 .cta-footer {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 360px;
+  left: 0;
+  width: 100%;
   height: 80px;
   display: flex;
   gap: var(--spacing-16);
@@ -939,10 +936,10 @@ body {
 
 .emotion-bottom-sheet {
   position: fixed;
-  left: 50%;
+  left: 0;
   bottom: 0;
-  transform: translateX(-50%) translateY(100%);
-  width: 360px;
+  transform: translateY(100%);
+  width: 100%;
   max-height: 70vh;
   background-color: var(--white);
   border-radius: 20px 20px 0 0;
@@ -952,7 +949,7 @@ body {
 }
 
 .emotion-bottom-sheet.active {
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
 }
 
 .emotion-sheet-header {
@@ -1048,8 +1045,8 @@ body {
 
 .profile-container {
   position: relative;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   min-height: 100vh;
 }
 
@@ -1232,4 +1229,81 @@ body {
 .chat-start-btn:hover {
   background-color: #4326B8;
   /* Slightly darker */
+}
+
+/* Image Preview State */
+.situation-upload.has-image {
+  border: none;
+  background: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.situation-upload .image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-8);
+}
+
+/* Delete Button (Top Right) */
+.image-delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+
+.image-delete-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.image-delete-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: #fff;
+}
+
+/* Change Button (Bottom Left) */
+.image-change-btn {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  height: 24px;
+  padding: 0 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+
+.image-change-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.image-change-btn span {
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff !important;
+  /* Override default span color */
+}
+
+.image-change-btn svg {
+  width: 12px;
+  height: 12px;
 }
